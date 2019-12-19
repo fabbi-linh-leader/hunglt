@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Atuth;
-
-
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
+
+
 
     /**
      * Create a new controller instance.
@@ -27,21 +27,27 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+   
+
+
     public function index()
     {
-        // $this->authorize('isAdmin');
-        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return User::latest()->paginate(5);
-        }
+         //$this->authorize('isAdmin');
+         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+            $post = User::latest()->paginate(5);
+            return $post;
+          // return ProductResource::colection($post);
+         }
 
+
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+
+
     public function store(Request $request)
     {
 
