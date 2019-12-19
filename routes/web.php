@@ -13,3 +13,5 @@ Route::get('invoice', function(){
 });
 
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d-/_.]+)?' );
+ Auth::routes(['register'=>false]);
+ Auth::routes(['login'=>false]);

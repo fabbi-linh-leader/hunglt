@@ -199,7 +199,7 @@
       }
     },
     "/user/udateProfile/{id}": {
-      "put": {
+      "patch": {
         "tags": [
           "user"
         ],
