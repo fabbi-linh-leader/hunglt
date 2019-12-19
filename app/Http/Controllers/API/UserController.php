@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Atuth;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Product as ProductResource;
 
 class UserController extends Controller
 {
+
+
 
     /**
      * Create a new controller instance.
@@ -27,13 +29,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+   
+
+
     public function index()
     {
-        // $this->authorize('isAdmin');
-        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return User::latest()->paginate(5);
-        }
+         //$this->authorize('isAdmin');
+         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+            $post = User::latest()->paginate(5);
+            return $post;
+          // return ProductResource::colection($post);
+         }
 
+
+        
     }
 
     /**
@@ -42,6 +53,40 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+    /**
+     * @OA\Get(
+     *     path="/user",
+     *     operationId="examplesAll",
+     *     tags={"Pages"},
+     *     description = "Create user",
+     *     @OA\Parameter(
+     
+     *         name="name",
+     *         in="query",
+     *         type="string",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Everything is fine"
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Example not found"
+     *     )
+     * )
+     *
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+
     public function store(Request $request)
     {
 
