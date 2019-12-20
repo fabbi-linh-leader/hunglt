@@ -10,11 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    Auth::routes([
-      'register' => false, // Registration Routes...
-      'reset' => false, // Password Reset Routes...
-      'verify' => false, // Email Verification Routes...
-    ]);
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
