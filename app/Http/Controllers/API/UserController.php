@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Resources\Product as ProductResource;
 
 class UserController extends Controller
@@ -21,7 +22,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
+      //  $this->middleware('jwt:api');
     }
 
     /**
@@ -150,7 +151,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return auth('api')->user();
+        return auth('')->user();
     }
 
     /**

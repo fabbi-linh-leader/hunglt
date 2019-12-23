@@ -17,7 +17,22 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::apiResources(['user' => 'API\UserController']);
-Route::get('profile', 'API\UserController@profile');
-Route::get('findUser', 'API\UserController@search');
-Route::put('profile', 'API\UserController@updateProfile');
+
+
+Route::post('signup', 'AuthController@register'); Route::post('login', 'AuthController@login');
+
+Route::group(['middleware' => 'jwt.auth'], function ()
+	 {
+	 	 Route::get('auth', 'AuthController@user');
+	 	 Route::post('logout', 'AuthController@logout');
+	 	
+	 	  }
+	 );
+
+
+Route::middleware('jwt.refresh')->get('/token/refresh', 'AuthController@refresh');
+
+ Route::apiResources(['user' => 'API\UserController']);
+		Route::get('profile', 'API\UserController@profile');
+		Route::get('findUser', 'API\UserController@search');
+		Route::put('profile', 'API\UserController@updateProfile');
